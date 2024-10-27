@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель адміністратора</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .dashboard-item {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Панель адміністратора</h1>
+  <div class="dashboard-item">Управління користувачами</div>
+  <div class="dashboard-item">Управління контентом</div>
+  <div class="dashboard-item">Налаштування системи</div>
+  <div class="dashboard-item">Звіти та аналітика</div>
+  <div class="link">
+    <a th:href="@{/logout}">Вихід</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профіль користувача</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .info {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .logout {
+      background-color: #e74c3c;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout:hover {
+      background-color: #c0392b;
+    }
+
+    .logout:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(231, 76, 60, 0.8);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Профіль користувача</h1>
+  <div class="info">
+    <p><strong>Ім'я користувача:</strong> <span th:text="${username}"></span></p>
+    <p><strong>Роль:</strong> <span th:text="${role}"></span></p>
+  </div>
+  <div class="link">
+    <form th:action="@{/logout}" method="post">
+      <button class="logout" type="submit">Вийти</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
