@@ -61,6 +61,24 @@
       text-align: center;
       margin-top: 1rem;
     }
+    .google-login {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .google-button {
+      background-color: #db4437; /* Google Red */
+      border: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .google-button:hover {
+      background-color: #c1351d; /* Darker Google Red */
+    }
   </style>
 </head>
 <body>
@@ -77,6 +95,13 @@
     </div>
     <button type="submit">Увійти</button>
   </form>
+
+  <div class="google-login">
+    <form th:action="@{/oauth2/authorization/google}" method="get">
+      <button type="submit" class="google-button">Увійти через Google</button>
+    </form>
+  </div>
+
   <div class="link">
     <a href="/register">Ще немає облікового запису? Зареєструйтеся</a>
   </div>

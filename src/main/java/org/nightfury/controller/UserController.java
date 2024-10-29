@@ -6,6 +6,7 @@ import org.nightfury.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,15 +46,32 @@ public class UserController {
 
     @GetMapping("/user/profile")
     public String userProfile(
-        @AuthenticationPrincipal org.springframework.security.core.userdetails.User user,
+        @AuthenticationPrincipal Object principal,
         Model model) {
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("role", user.getAuthorities().stream()
-            .findFirst()
-            .map(GrantedAuthority::getAuthority)
-            .orElse("ROLE_USER"));
+
+        String username;
+        String role;
+
+        if (principal instanceof org.springframework.security.core.userdetails.User user) {
+            username = user.getUsername();
+            role = user.getAuthorities().stream()
+                .findFirst()
+                .map(GrantedAuthority::getAuthority)
+                .orElse("ROLE_USER");
+        } else {
+            OAuth2User oAuth2User = (OAuth2User) principal;
+            username = oAuth2User.getAttribute("name");
+            role = oAuth2User.getAuthorities().stream()
+                .findFirst()
+                .map(GrantedAuthority::getAuthority)
+                .orElse("ROLE_USER");
+        }
+
+        model.addAttribute("username", username);
+        model.addAttribute("role", role);
         return "userProfile";
     }
+
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard() {
